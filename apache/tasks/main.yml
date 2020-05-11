@@ -2,5 +2,11 @@
 # tasks file for apache
 - name: Install Apache
   yum:
-    name: apache
+    name: https
     status: present
+
+- name: check installed version
+  shell: rpm -q httpd | grep httpd | awk '{print $1}' | cut -d'-' -f2
+  register: version
+  changed_when: False
+  ignore_warnings: True
